@@ -58,15 +58,61 @@
   a note model object
 
   ## BLOCS
+  ### Notes
+  - notes_bloc - This class is maps notes_event to notes_state
+  - notes_event - Events: FetchNotes, UpdateNotes
+  - notes_state - States: NotesInitial, NotesLoaded,
+  NotesLoading, NotesError
+
+  ### Auth
+  - auth_bloc - Maps auth_event to auth_state
+  - auth_event - Events: AppStarted, Login, Logout
+  - auth_state - States: Anonymous, Authenticated, Unauthenticated
+
+  ### Note Detail
+  - note_detail_bloc - maps note_detail_event to note_detail_state
+  - note_detail_event - Events: NoteLoaded, NoteSaved, NoteAdded, NoteContentUpdated, NoteColorUpdated, NoteDeleted
+  - note_detail_state - States: NoteDetailState.isEmpty, NoteDetailState.isSubmitting, NoteDetailState.isSuccess,
+  NoteDetailState.isFailure 
 
   ## REPOSITORIES
+  ### Notes 
+  - iNotesRepository - This is the base abstract repository notes class. Methods: addNote, updateNote, deleteNote,
+  streamNotes
+  - notesRepository - This class extends iNotesRepository class and overrides it's methods
+  ### Auth 
+  - iAuthRepository - This is the base abstract repository auth class. Methods: loginAnonmously, loginWithEmailAndPassword,
+  signUpWithEmailAndPassword, logout
+  - authRepository - This class extends the iAuthRepository class and overrides it's methods
 
   ## SCREENS
+  ### Home Screen
+  - Main screen of the app
+  ### Note Detail Screen 
+  - Shows details about a note. Allows for editing, deleting and creation of a new note
+  ### Login Screen
+  - Allows for a user to login/sign up
 
   ## WIDGETS
+  ### Progress Loader
+  - Shows the circular progress loader
+  ### Notes Grid
+  - This widget is responsible for rendering a single note in a grid
 
   ## CONSTANTS
+  ### Paths
+  - Cloud firestore document paths
+  ### Themes
+  - Dark/light themes
 
   ## HELPERS
+  ### Validtors
+  - validate email addresses and password. Passwords must be atleast 6 characters long
 
   ## PACKAGES
+    - flutter_bloc: 
+    - meta: 
+    - equatable 
+    - firebase_core:
+    - cloud_firestore:
+    - firebase_auth:
