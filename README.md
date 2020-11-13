@@ -1,6 +1,6 @@
-# flutter_journal_app
+# Flutter Journal App
 
-A new Flutter project.
+A journaling app built using flutter and firebase database.
 
 ## Getting Started
 
