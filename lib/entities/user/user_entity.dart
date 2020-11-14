@@ -6,7 +6,7 @@ class UserEntity extends Equatable {
   final String id;
   final String email;
 
-  UserEntity({@required this.email, this.id});
+  const UserEntity({@required this.email, this.id});
 
   @override
   List<Object> get props => [id, email];
@@ -14,8 +14,8 @@ class UserEntity extends Equatable {
   @override
   String toString() => 'UserEntity {id: $id, email: $email}';
 
-  factory UserEntity.fromDocument(DocumentSnapshot doc) =>
-      UserEntity(email: doc.data()['email'], id: doc.data()['id']);
+  factory UserEntity.fromDocument(DocumentSnapshot doc) => UserEntity(
+      email: doc.data()['email'] as String, id: doc.data()['id'] as String);
 
-  Map<String, dynamic> toDocument() => {'email': email};
+  Map<String, dynamic> toDocument() => <String, String>{'email': email};
 }

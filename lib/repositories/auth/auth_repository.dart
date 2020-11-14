@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_journal_app/constants/paths.dart';
-import 'package:flutter_journal_app/entities/user/user_entity.dart';
-import 'package:flutter_journal_app/models/user/user_model.dart';
-import 'package:flutter_journal_app/repositories/auth/i_auth_repository.dart';
+
+import '../../constants/paths.dart';
+import '../../entities/user/user_entity.dart';
+import '../../models/user/user_model.dart';
+import 'i_auth_repository.dart';
 
 class AuthRepository extends IAuthRepository {
   final FirebaseAuth _firebaseAuth;
@@ -32,7 +33,7 @@ class AuthRepository extends IAuthRepository {
   @override
   Future<UserModel> loginAnonymously() async {
     final authResult = await _firebaseAuth.signInAnonymously();
-    return await _firebaseUserToUser(authResult.user);
+    return _firebaseUserToUser(authResult.user);
   }
 
   @override
@@ -40,7 +41,7 @@ class AuthRepository extends IAuthRepository {
       String email, String password) async {
     final authResult = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
-    return await _firebaseUserToUser(authResult.user);
+    return _firebaseUserToUser(authResult.user);
   }
 
   @override

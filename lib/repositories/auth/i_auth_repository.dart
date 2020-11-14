@@ -1,4 +1,4 @@
-import 'package:flutter_journal_app/models/user/user_model.dart';
+import '../../models/user/user_model.dart';
 
 abstract class IAuthRepository {
   Future<UserModel> loginAnonymously();
