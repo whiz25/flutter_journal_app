@@ -20,7 +20,8 @@ class NoteEntity extends Equatable {
   List<Object> get props => [id, userId, content, color, timestamp];
 
   @override
-  String toString() => '''NoteEntity {id: $id, userId: $userId, color: $color, content: $content, timestamp: $timestamp}''';
+  String toString() =>
+      '''NoteEntity {id: $id, userId: $userId, color: $color, content: $content, timestamp: $timestamp}''';
 
   factory NoteEntity.fromDocument({@required DocumentSnapshot doc}) =>
       NoteEntity(
