@@ -3,14 +3,14 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import '../../entities/note/note_entity.dart';
 
-class NoteModel extends Equatable {
+class Note extends Equatable {
   final String id;
   final String userId;
   final String content;
   final String color;
   final DateTime timestamp;
 
-  const NoteModel({
+  const Note({
     @required this.userId,
     @required this.content,
     @required this.color,
@@ -24,7 +24,7 @@ class NoteModel extends Equatable {
   String toString() =>
       'NoteModel {id:$id,userId:$userId,content:$content,color:$color,timestamp:$timestamp}';
 
-  NoteModel fromEntity(NoteEntity entity) => NoteModel(
+  factory Note.fromEntity(NoteEntity entity) => Note(
       userId: entity.id,
       content: entity.content,
       color: entity.color,
@@ -37,9 +37,9 @@ class NoteModel extends Equatable {
       color: color,
       timestamp: Timestamp.fromDate(timestamp));
 
-  NoteModel copyWith(
+  Note copyWith(
           {String userId, String content, String color, DateTime timestamp}) =>
-      NoteModel(
+      Note(
           userId: userId ?? this.userId,
           content: content ?? this.content,
           color: color ?? this.color,
