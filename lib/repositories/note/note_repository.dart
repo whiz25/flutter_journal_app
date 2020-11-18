@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_journal_app/entities/entities.dart';
-import '../../constants/paths.dart';
 
+import '../../constants/paths.dart';
+import '../../entities/entities.dart';
 import '../../models/note/note_model.dart';
 import 'i_note_repository.dart';
 
@@ -37,8 +37,7 @@ class NoteRepository extends INoteRepository {
   }
 
   @override
-  Stream<List<Note>> allNotes({@required String userId}) {
-    return _firebaseFirestore
+  Stream<List<Note>> allNotes({@required String userId}) => _firebaseFirestore
         .collection(Paths.notes)
         .where('userId', isEqualTo: userId)
         .snapshots()
@@ -46,5 +45,4 @@ class NoteRepository extends INoteRepository {
             .map((doc) => Note.fromEntity(NoteEntity.fromDocument(doc: doc)))
             .toList()
               ..sort((a, b) => b.timestamp.compareTo(a.timestamp)));
-  }
 }
