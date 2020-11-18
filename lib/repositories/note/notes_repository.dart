@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import '../../constants/paths.dart';
 import '../../entities/entities.dart';
 import '../../models/note/note_model.dart';
-import 'i_note_repository.dart';
+import 'i_notes_repository.dart';
 
-class NoteRepository extends INoteRepository {
+class NotesRepository extends INotesRepository {
   final FirebaseFirestore _firebaseFirestore;
 
-  NoteRepository({@required FirebaseFirestore firebaseFirestore})
+  NotesRepository({@required FirebaseFirestore firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
