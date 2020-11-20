@@ -1,5 +1,6 @@
 part of 'note_detail_bloc.dart';
 
+@immutable
 class NoteDetailState extends Equatable {
   final Note note;
   final bool isSubmitting;
@@ -53,11 +54,15 @@ class NoteDetailState extends Equatable {
           errorMessage: errorMessage);
 
   NoteDetailState copyWith(
-          {Note note, bool isSubmitting, bool isSuccess, bool isFailure}) =>
+          {Note note,
+          bool isSubmitting,
+          bool isSuccess,
+          bool isFailure,
+          String errorMessage}) =>
       NoteDetailState(
           note: note ?? this.note,
           isSubmitting: isSubmitting ?? this.isSubmitting,
           isSuccess: isSuccess ?? this.isSuccess,
           isFailure: isFailure ?? this.isFailure,
-          errorMessage: errorMessage ?? errorMessage);
+          errorMessage: errorMessage ?? this.errorMessage);
 }
