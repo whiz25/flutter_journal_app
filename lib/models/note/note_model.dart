@@ -7,7 +7,7 @@ class Note extends Equatable {
   final String id;
   final String userId;
   final String content;
-  final String color;
+  final Color color;
   final DateTime timestamp;
 
   const Note({
@@ -27,21 +27,33 @@ class Note extends Equatable {
   factory Note.fromEntity(NoteEntity entity) => Note(
       userId: entity.id,
       content: entity.content,
-      color: entity.color,
+      color: HexColor(entity.color),
       timestamp: entity.timestamp.toDate());
 
   NoteEntity toEntity() => NoteEntity(
       id: id,
       userId: userId,
       content: content,
-      color: color,
+      color: '#${color.value.toRadixString(16)}',
       timestamp: Timestamp.fromDate(timestamp));
 
   Note copyWith(
-          {String userId, String content, String color, DateTime timestamp}) =>
+          {String userId, String content, Color color, DateTime timestamp}) =>
       Note(
           userId: userId ?? this.userId,
           content: content ?? this.content,
           color: color ?? this.color,
           timestamp: timestamp ?? this.timestamp);
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll('#', '');
+    if (hexColor.length == 6) {
+      hexColor = 'FF$hexColor';
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }

@@ -9,7 +9,7 @@ import 'i_notes_repository.dart';
 class NotesRepository extends INotesRepository {
   final FirebaseFirestore _firebaseFirestore;
 
-  NotesRepository({@required FirebaseFirestore firebaseFirestore})
+  NotesRepository({FirebaseFirestore firebaseFirestore})
       : _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
   @override
@@ -38,11 +38,11 @@ class NotesRepository extends INotesRepository {
 
   @override
   Stream<List<Note>> allNotes({@required String userId}) => _firebaseFirestore
-        .collection(Paths.notes)
-        .where('userId', isEqualTo: userId)
-        .snapshots()
-        .map((snapshot) => snapshot.docs
-            .map((doc) => Note.fromEntity(NoteEntity.fromDocument(doc: doc)))
-            .toList()
-              ..sort((a, b) => b.timestamp.compareTo(a.timestamp)));
+      .collection(Paths.notes)
+      .where('userId', isEqualTo: userId)
+      .snapshots()
+      .map((snapshot) => snapshot.docs
+          .map((doc) => Note.fromEntity(NoteEntity.fromDocument(doc: doc)))
+          .toList()
+            ..sort((a, b) => b.timestamp.compareTo(a.timestamp)));
 }

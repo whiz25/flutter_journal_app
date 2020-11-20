@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../constants/paths.dart';
 import '../../entities/user/user_entity.dart';
@@ -12,8 +11,7 @@ class AuthRepository extends IAuthRepository {
   final FirebaseFirestore _firebaseFirestore;
 
   AuthRepository(
-      {@required FirebaseAuth firebaseAuth,
-      @required FirebaseFirestore firebaseFirestore})
+      {FirebaseAuth firebaseAuth, FirebaseFirestore firebaseFirestore})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
         _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
 
